@@ -1,0 +1,70 @@
+{
+  "name": "dynamic-island-desktop",
+  "version": "1.1.2",
+  "private": true,
+  "type": "module",
+  "main": "electron/main.cjs",
+  "description": "Dynamic Island overlay for the Windows desktop",
+  "author": "Dynamic Island",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "start": "node scripts/start.mjs",
+    "build": "node scripts/build-native.mjs && tsc -b && vite build",
+    "dist": "npm run build && node scripts/package.mjs",
+    "pack": "npm run build && electron-builder --win --x64 --dir",
+    "test": "vitest run src/__tests__ && node --test electron/*.test.cjs",
+    "test:desktop": "node scripts/start.mjs --smoke-test"
+  },
+  "build": {
+    "appId": "com.island.desktop",
+    "productName": "Dynamic Island",
+    "asar": true,
+    "asarUnpack": [
+      "electron/*.ps1",
+      "electron/*.dll"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*.cjs",
+      "electron/**/*.ps1",
+      "electron/Artwork.dll",
+      "!electron/**/*.test.cjs",
+      "!electron/smoke.cjs",
+      "package.json"
+    ],
+    "win": {
+      "target": "portable",
+      "signAndEditExecutable": false
+    },
+    "portable": {
+      "artifactName": "Dynamic-Island-${version}.exe"
+    }
+  },
+  "dependencies": {
+    "@fontsource-variable/dm-sans": "^5.0.0",
+    "@fontsource-variable/manrope": "^5.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.1.0",
+    "electron": "^45.3.1",
+    "electron-builder": "^26.18.0",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.0",
+    "vitest": "^5.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/syslavka/dynamic-island-electron.git"
+  },
+  "homepage": "https://github.com/syslavka/dynamic-island-electron#readme",
+  "bugs": {
+    "url": "https://github.com/syslavka/dynamic-island-electron/issues"
+  }
+}

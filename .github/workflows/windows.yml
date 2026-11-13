@@ -1,0 +1,74 @@
+name: Windows build
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm.cmd ci
+      - name: Run unit and filesystem tests
+        run: npm.cmd test
+      - name: Build application
+        run: npm.cmd run build
+      - name: Package portable executable
+        run: node scripts/package.mjs
+      - name: Create SHA-256 checksum
+        shell: pwsh
+        run: |
+          $version = (Get-Content package.json -Raw | ConvertFrom-Json).version
+          $file = "Dynamic-Island-$version.exe"
+          $hash = (Get-FileHash "release/$file" -Algorithm SHA256).Hash.ToLowerInvariant()
+          "$hash  $file" | Set-Content release/SHA256SUMS.txt -Encoding ascii
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dynamic-island-windows-x64
+          path: |
+            release/Dynamic-Island-*.exe
+            release/SHA256SUMS.txt
+          if-no-files-found: error
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dynamic-island-windows-x64
+          path: release
+      - name: Verify tag matches package version
+        shell: pwsh
+        run: |
+          $expected = 'v' + (Get-Content package.json -Raw | ConvertFrom-Json).version
+          if ($env:GITHUB_REF_NAME -ne $expected) { throw "Tag must match $expected" }
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          $version = (Get-Content package.json -Raw | ConvertFrom-Json).version
+          gh release view "$env:GITHUB_REF_NAME" --json tagName 2>$null
+          if ($LASTEXITCODE -eq 0) {
+            Write-Host 'Release already exists; preserving its original assets.'
+            exit 0
+          }
+          gh release create "$env:GITHUB_REF_NAME" "release/Dynamic-Island-$version.exe" release/SHA256SUMS.txt --verify-tag --title "Dynamic Island $version · Windows" --notes-file docs/RELEASE_NOTES.md

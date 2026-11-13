@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" fill="none">
+  <defs>
+    <linearGradient id="sky" x1="700" y1="0" x2="700" y2="900" gradientUnits="userSpaceOnUse"><stop stop-color="#b7c4d5"/><stop offset=".42" stop-color="#e9d8d5"/><stop offset="1" stop-color="#f5ddca"/></linearGradient>
+    <linearGradient id="far" x1="1050" y1="300" x2="700" y2="760" gradientUnits="userSpaceOnUse"><stop stop-color="#b3a6b9"/><stop offset="1" stop-color="#697c91"/></linearGradient>
+    <linearGradient id="middle" x1="400" y1="470" x2="650" y2="900" gradientUnits="userSpaceOnUse"><stop stop-color="#8796a8"/><stop offset="1" stop-color="#4d657b"/></linearGradient>
+    <linearGradient id="front" x1="1100" y1="600" x2="800" y2="1000" gradientUnits="userSpaceOnUse"><stop stop-color="#667e86"/><stop offset="1" stop-color="#304d5c"/></linearGradient>
+    <radialGradient id="light"><stop stop-color="#fff1df" stop-opacity=".8"/><stop offset="1" stop-color="#fff1df" stop-opacity="0"/></radialGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="3"/></filter>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".055"/></feComponentTransfer><feBlend in="SourceGraphic" mode="soft-light"/></filter>
+  </defs>
+  <g filter="url(#grain)">
+    <path fill="url(#sky)" d="M0 0h1400v900H0z"/>
+    <ellipse cx="1060" cy="310" rx="360" ry="320" fill="url(#light)"/>
+    <circle cx="1050" cy="297" r="48" fill="#fff0d8" opacity=".85"/>
+    <path d="M0 615C180 590 300 655 460 595S720 506 850 451s188-89 267-77 178 109 283 100v426H0Z" fill="url(#far)" filter="url(#soft)"/>
+    <path d="M0 458c120 1 204 75 295 105s169 27 251 68 207 38 328 27 208 42 310 38 165-16 216-4v208H0Z" fill="url(#middle)"/>
+    <path d="M0 790c139-28 276 27 423-6s232-88 365-122 175-103 316-101 196 58 296 47v292H0Z" fill="url(#front)"/>
+    <path d="M0 843c192-13 310 40 480 20s286-62 438-47 287 61 482 20v64H0Z" fill="#304f59" opacity=".5"/>
+  </g>
+</svg>

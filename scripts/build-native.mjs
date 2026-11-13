@@ -1,0 +1,10 @@
+﻿import { spawnSync } from 'node:child_process';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+if (process.platform !== 'win32') throw new Error('The Windows artwork helper must be built on Windows.');
+const directory = fileURLToPath(new URL('../electron/', import.meta.url));
+const windows = process.env.SystemRoot || 'C:\\Windows';
+const framework = path.join(windows, 'Microsoft.NET/Framework64/v4.0.30319');
+const result = spawnSync(path.join(framework, 'csc.exe'), ['/nologo', '/target:library', '/out:Artwork.dll', ...['Windows.Storage', 'Windows.Foundation'].map(name => `/reference:${path.join(windows, 'System32/WinMetadata', name + '.winmd')}`), `/reference:${path.join(framework, 'System.Runtime.dll')}`, 'Artwork.cs'], { cwd: directory, stdio: 'inherit', windowsHide: true });
+if (result.error) throw result.error;
+process.exitCode = result.status ?? 1;

@@ -1,0 +1,16 @@
+node_modules/
+dist/
+release/
+.release-assets/
+.electron-cache/
+.npm-cache/
+.qa/
+.env
+.env.*
+!.env.example
+*.local
+*.log
+*.tsbuildinfo
+electron/*.dll
+.DS_Store
+Thumbs.db

@@ -1,0 +1,28 @@
+/* The alpha window stays transparent. Only bounded surfaces and their children animate. */
+html[data-window="overlay"] :is(body,#root,.theme-root,.desktop-overlay,.island-position,.island-cluster) { background: transparent !important; }
+.desktop-overlay .island-shell, .secondary-island { --spring: cubic-bezier(.22,1.06,.34,1); transition-property: width,height,border-radius,opacity,background-color,border-color,margin-left; transition-duration: var(--motion-duration),var(--motion-duration),var(--motion-duration),180ms,220ms,220ms,var(--motion-duration); transition-timing-function: var(--spring),var(--spring),var(--spring),ease,ease,ease,var(--spring); }
+.desktop-overlay .island-shell .island-trigger { position: relative; display: block; padding: 0; height: 46px; }
+.desktop-overlay .island-shell .trigger-view { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; gap: 9px; width: auto; padding: 0 17px; text-overflow: clip; overflow: hidden; transition: opacity 140ms ease,transform 240ms cubic-bezier(.22,.8,.22,1); pointer-events: none; }
+.desktop-overlay .island-shell .trigger-compact { opacity: 1; transform: translateY(0) scale(1); padding: 0 13px; }
+.desktop-overlay .island-shell .trigger-expanded { opacity: 0; transform: translateY(-5px); }
+.desktop-overlay .expanded .trigger-compact { opacity: 0; transform: translateY(5px) scale(.97); }
+.desktop-overlay .expanded .trigger-expanded { opacity: 1; transform: translateY(0); transition-delay: 65ms; }
+.desktop-overlay .island-shell .trigger-view.heading-leaving { opacity: 0; transition-delay: 0ms; }
+.trigger-compact > span:nth-child(2) { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; font-weight: 550; }
+.trigger-compact .compact-leading, .trigger-compact .compact-eq { flex: none; }
+.desktop-overlay .island-content { transform: translateY(5px); transition: opacity 120ms ease,transform 300ms cubic-bezier(.22,.8,.22,1); }
+.desktop-overlay .expanded .island-content { transform: translateY(0); transition-delay: 65ms; }
+.activity-transition { opacity: 1; transform: translateY(0); transition: opacity 150ms ease,transform 200ms cubic-bezier(.22,.8,.22,1); }
+.activity-transition.activity-leaving { opacity: 0; transform: translateY(-4px); transition-duration: 90ms; }
+.desktop-overlay .activity-transition .module-enter { animation: none; }
+.secondary-content { transition: opacity 140ms ease,transform 260ms cubic-bezier(.22,.8,.22,1); }
+.secondary-content { min-width: 0; }
+.desktop-overlay .island-module-tabs { overflow-x: auto; scrollbar-width: none; }
+.desktop-overlay .island-shell.idle { width: 176px; }
+.desktop-overlay .island-shell.clock-only.compact { width: 104px; height: 40px; border-radius: 21px; opacity: 1; }
+.desktop-overlay .island-shell.clock-only .island-trigger { height: 38px; }
+.desktop-overlay .clock-only .trigger-compact { justify-content: center; }
+.desktop-overlay .clock-only .compact-label { flex: none; width: 100%; text-align: center; font-size: 14px; font-variant-numeric: tabular-nums; letter-spacing: .4px; }
+.secondary-island .secondary-trigger > svg:first-child { transition: color 200ms ease,transform 300ms cubic-bezier(.22,1.06,.34,1); }
+.secondary-expanded .secondary-trigger > svg:first-child { transform: scale(.92); }
+[data-reduced-motion="true"] .island-cluster *,[data-reduced-motion="true"] .island-cluster *:before,[data-reduced-motion="true"] .island-cluster *:after { transition-duration: .01ms !important; transition-delay: 0ms !important; animation-duration: .01ms !important; }

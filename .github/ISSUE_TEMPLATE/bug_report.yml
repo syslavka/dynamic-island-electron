@@ -1,0 +1,36 @@
+name: Ошибка в приложении
+description: Проблема с островом, музыкой, прозрачностью или другой функцией
+title: "[Bug]: "
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Версия приложения
+      placeholder: 1.1.2
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Windows и масштаб экрана
+      placeholder: Windows 11, 2560×1440, 125%
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Шаги воспроизведения
+      description: Какие действия приводят к проблеме?
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Ожидаемое и фактическое поведение
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Дополнительные сведения
+      description: Для музыки укажите плеер. Прикладывайте только относящиеся к проблеме снимки и логи.

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="440" viewBox="0 0 1280 440" role="img" aria-labelledby="title desc">
+  <title id="title">Dynamic Island for Windows — Electron 1.1.2</title>
+  <desc id="desc">Тёмная обложка с золотым акцентом, стеклянной капсулой и отдельным круглым индикатором.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#0e1119"/><stop offset="1" stop-color="#20232e"/></linearGradient>
+    <linearGradient id="glass" x2="0.8" y2="1"><stop stop-color="#393d49"/><stop offset=".5" stop-color="#1e222c"/><stop offset="1" stop-color="#13161f"/></linearGradient>
+    <linearGradient id="line" x2="0.8" y2="1"><stop stop-color="#bac0d3" stop-opacity=".8"/><stop offset=".5" stop-color="#62697c" stop-opacity=".35"/><stop offset="1" stop-color="#c7ccdb" stop-opacity=".55"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#b99955" stop-opacity=".17"/><stop offset="1" stop-color="#b99955" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1280" height="440" rx="28" fill="url(#bg)"/>
+  <ellipse cx="990" cy="148" rx="430" ry="300" fill="url(#glow)"/>
+  <path d="M56 73h32" stroke="#edbd65" stroke-width="3" stroke-linecap="round"/>
+  <text x="101" y="79" fill="#d5d9e3" font-family="Segoe UI,Arial,sans-serif" font-size="15" letter-spacing="4">WINDOWS DESKTOP</text>
+  <text x="56" y="181" fill="#f4f5fa" font-family="Segoe UI,Arial,sans-serif" font-size="68" font-weight="650" letter-spacing="-2">Dynamic Island</text>
+  <text x="59" y="232" fill="#aeb5c6" font-family="Segoe UI,Arial,sans-serif" font-size="23">Маленький остров для большого рабочего стола.</text>
+  <rect x="58" y="286" width="114" height="35" rx="17.5" fill="#edbd65" fill-opacity=".12" stroke="#edbd65" stroke-opacity=".3"/>
+  <text x="115" y="309" text-anchor="middle" fill="#f0c575" font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="600">v1.1.2</text>
+  <text x="191" y="309" fill="#9ba4b8" font-family="Segoe UI,Arial,sans-serif" font-size="15">Electron · React · TypeScript</text>
+  <rect x="763" y="166" width="345" height="88" rx="44" fill="#000" fill-opacity=".22"/>
+  <rect x="763" y="157" width="345" height="88" rx="44" fill="url(#glass)" stroke="url(#line)" stroke-width="1.5"/>
+  <path d="M810 159h251" stroke="#fff" stroke-opacity=".23"/>
+  <circle cx="803" cy="201" r="5" fill="#edbd65"/>
+  <text x="825" y="211" fill="#f5f6fa" font-family="Segoe UI,Arial,sans-serif" font-size="28" font-weight="600">12:34</text>
+  <g stroke="#edbd65" stroke-width="4" stroke-linecap="round"><path d="M1024 195v12M1034 187v28M1044 179v44M1054 190v22M1064 196v10"/></g>
+  <circle cx="1165" cy="201" r="44" fill="url(#glass)" stroke="url(#line)" stroke-width="1.5"/>
+  <g fill="none" stroke="#edbd65" stroke-width="2.5" stroke-linecap="round"><circle cx="1165" cy="204" r="15"/><path d="M1165 204v-8M1160 180h10M1165 180v5"/></g>
+  <text x="58" y="391" fill="#788296" font-family="Segoe UI,Arial,sans-serif" font-size="13" letter-spacing="1.4">MUSIC / TIMERS / LIVE ACTIVITIES</text>
+  <text x="1220" y="391" text-anchor="end" fill="#788296" font-family="Segoe UI,Arial,sans-serif" font-size="13">Portable · Windows 10 / 11</text>
+</svg>
